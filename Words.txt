@@ -1,0 +1,7 @@
+arbre
+voiture
+vitre
+quiche
+lampadaire
+frite
+burger
