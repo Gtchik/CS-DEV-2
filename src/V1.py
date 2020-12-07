@@ -7,5 +7,5 @@ Created on Mon Nov 30 08:06:36 2020
 
 from UI import *
 if __name__ == '__main__':
-    UI(Game('Words.txt')).consoleStart()
+    UI(Game('Words.txt')).tkinterStart()
 

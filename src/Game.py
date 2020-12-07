@@ -8,8 +8,8 @@ from random import choice
 from Word import *
 
 class Game:
-    nbTour=8
-    def __init__(self, url):
+    nbTour=7
+    def __init__(self, url=str()):
         self.__playedWords=[]
         self.__score=[]
         self.__tour=0
@@ -19,19 +19,19 @@ class Game:
             f.close()
         self.__words = [ Word(word) for word in wordsList]
 
-    def __removeWords(self,val): #self
+    def __removeWords(self,val=str()): #self
         self.__words.remove(val)
         return self
     def getWords(self): #array
         return self.__words
 
-    def __addPlayedWords(self, word): #self
+    def __addPlayedWords(self, word=str()): #self
         self.__playedWords.append(word)
         return self
     def getPlayedWord(self): #array
         return self.__playedWords
 
-    def __addScore(self, score): #self
+    def __addScore(self, score=str()): #self
         self.__score.append(int(score))
         return self
     def getScore(self): #array
@@ -40,32 +40,36 @@ class Game:
     def getMaxScore(self): #integer
         return min(self.__score)
     
-    def setTour(self,tour): #self
+    def setTour(self,tour=int()): #self
         self.__tour = tour
         return self    
     def getTour(self): #integer
         return self.__tour
     
-    def setCurrent(self, current):
+    def setCurrent(self, current=Word('')): #Lself
         self.__current = current
         return self
-    def getCurrent(self):
+    def getCurrent(self): #Word
         return self.__current
     
-    def checkLetter(self,letter):
+    def checkLetter(self,letter=str()): #string
+        """Permet de verifier que la lettre est dans le mot"""
         try:
-            self.getCurrent().checkLetter(letter)
+            if not self.getCurrent().checkLetter(letter):
+                self.setTour(self.getTour()+1)
         except Exception as error:
             return error
-        self.setTour(self.getTour()+1)
+        
         return ''
     
-    def start(self):
+    def start(self): #booleen
+        """Call to start the game"""
         self.setCurrent(choice(self.getWords()))
         self.setTour(0)
         return True
         
-    def end(self):
+    def end(self): #booleen
+        """Call to end the game"""
         self.__addScore(self.getTour())
         self.__removeWords(self.getCurrent()).__addPlayedWords(self.getCurrent())
         return True
