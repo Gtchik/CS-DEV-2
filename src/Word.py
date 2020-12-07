@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Created on Mon Nov 30 15:42:17 2020
-
+@Tp-2
 @author: gtchi
 """
 
@@ -12,13 +12,13 @@ class Word:
         # Contains the tour number
         self.__word = word
                 
-    def __setWord(self, word=str()): #self
+    def __setWord(self, word: str) -> """Word""": 
         self.__word = word
         return self
     def getWord(self):#string
         return self.__word
  
-    def getHiddenWord(self): #string
+    def getHiddenWord(self) -> str: #string
         hiddenWord = ''
         for val in self.getWord():
             if val in self.getLetters():
@@ -27,13 +27,13 @@ class Word:
                 hiddenWord += '_'            
         return hiddenWord
     
-    def __addLetter(self, letter=str()): #self
+    def __addLetter(self, letter:str): #self
         self.__letters.append(letter)
         return self
     def getLetters(self): #array
         return self.__letters
     
-    def checkLetter(self,letter=str()): #booleen
+    def checkLetter(self,letter:str) -> bool:
         """Use to check letter (deja joue, plusieur caractere, dans le mot)"""
         letter = letter.lower()
         if len(letter)!=1:
